@@ -7,17 +7,16 @@ app.use(cors());
 
 app.use(express.json());
 
-const { getCompliment } = require('./controller')
+
+const { getCompliment, getFortune, getMotivation, getQuote, createNewPerson, deletePerson } = require('./controller')
+
+
 app.get("/api/compliment", getCompliment);
-
-const { getFortune } = require('./controller')
 app.get("/api/fortune", getFortune);
-
-const { getMotivation } = require('./controller')
 app.get("/api/motivation", getMotivation);
-
-const { getQuote } = require('./controller')
 app.get("/api/quote", getQuote);
+app.post("/api/person" , createNewPerson)
+app.delete("/api/delete/:name" , deletePerson)
 
 
 

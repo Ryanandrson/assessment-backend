@@ -35,6 +35,42 @@ module.exports = {
         let randomQuote = quotes[randomIndex];
       
         res.status(200).send(randomQuote);
-    }
+    },
 
+    createNewPerson: (req, res) => {
+        let {name, power} = req.body
+
+        db.push({
+            name: name, 
+            power: isNaN(+power) ? 1 : +power}
+        )
+        res.send(db)
+
+    },
+    deletePerson: (req,res) => {
+        let {name} = req.params
+
+        for(let i = 0; i <db.length; i++){
+            if (name === db[i].name){
+                db.splice(i, 1)
+            }
+        }
+
+        res.send(db)
+    }
 }
+
+const db = [
+    {
+        name: 'Egha',
+        power: '5840',
+    },
+    {
+        name: 'Ben',
+        power: '8186',
+    },
+    {
+        name: 'Jared',
+        power: '8088',
+    },
+]
